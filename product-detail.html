@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 상세 - 동서가구</title>
+    <link rel="icon" type="image/svg+xml" href="source/favicon.svg">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img src="source/logo.svg" alt="동서가구 로고" class="brand-logo">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="sub1.html">상품목록</a></li>
+                    <li><a href="sub2.html">베스트</a></li>
+                    <li><a href="sub3.html">장바구니</a></li>
+                    <li><a href="sub4.html">마이페이지</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="nav-icon search-toggle" id="searchToggle" type="button" aria-label="검색 열기/닫기">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <a href="sub3.html" class="nav-icon">
+                        <i class="bi bi-cart3"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="sub4.html" class="nav-icon">
+                        <i class="bi bi-person"></i>
+                    </a>
+                </div>
+                <button class="nav-toggle" aria-label="메뉴 토글">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 헤더 아래 독립 검색 패널 -->
+    <div class="search-panel" id="searchPanel" aria-hidden="true">
+        <div class="search-panel-inner">
+            <label for="searchInput" class="sr-only">상품 검색</label>
+            <div class="search-input-wrap">
+                <input type="text" id="searchInput" class="search-input" placeholder="상품 검색..." autocomplete="off"
+                    aria-expanded="false">
+                <button class="search-btn" type="button" aria-label="검색 실행"><i class="bi bi-search"></i></button>
+                <button class="search-close" type="button" aria-label="검색 닫기"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+    </div>
+
+    <main class="main">
+        <section class="product-detail">
+            <div class="container">
+                <div class="product-detail-wrapper">
+                    <!-- 상품 이미지 영역 -->
+                    <div class="product-images">
+                        <div class="main-image">
+                            <img id="mainProductImage" src="" alt="상품 메인 이미지">
+                        </div>
+                        <div class="thumbnail-images" id="thumbnailImages">
+                            <!-- 썸네일은 JavaScript로 동적 생성 -->
+                        </div>
+                    </div>
+
+                    <!-- 상품 정보 영역 -->
+                    <div class="product-detail-info">
+                        <div class="product-badges">
+                            <!-- 배지는 JavaScript로 동적 생성 -->
+                        </div>
+                        <h1 class="product-detail-title">상품명</h1>
+                        <div class="product-detail-rating">
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </div>
+                            <span class="rating-score">4.5</span>
+                            <span class="review-count">(123개 리뷰)</span>
+                        </div>
+                        <div class="product-detail-price">
+                            <span class="price-original" style="display: none;"></span>
+                            <span class="price-sale"></span>
+                        </div>
+                        <div class="product-detail-meta">
+                            <div class="meta-item">
+                                <i class="bi bi-truck"></i>
+                                <span>무료배송</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="bi bi-shield-check"></i>
+                                <span>7일 이내 무료반품</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="bi bi-credit-card"></i>
+                                <span>무이자 할부 가능</span>
+                            </div>
+                        </div>
+                        <div class="product-options">
+                            <div class="option-group">
+                                <label>색상</label>
+                                <div class="option-buttons">
+                                    <button class="option-btn active">블랙</button>
+                                    <button class="option-btn">화이트</button>
+                                    <button class="option-btn">실버</button>
+                                </div>
+                            </div>
+                            <div class="option-group">
+                                <label>수량</label>
+                                <div class="quantity-control">
+                                    <button class="qty-btn minus"><i class="bi bi-dash"></i></button>
+                                    <input type="number" class="qty-input" value="1" min="1">
+                                    <button class="qty-btn plus"><i class="bi bi-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-cart" id="addToCartBtn">
+                                <i class="bi bi-cart-plus"></i> 장바구니 담기
+                            </button>
+                            <button class="btn-wishlist">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 상품 상세 설명 탭 -->
+                <div class="product-tabs">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="description">상품 상세</button>
+                        <button class="tab-btn" data-tab="spec">상품 스펙</button>
+                        <button class="tab-btn" data-tab="reviews">리뷰</button>
+                        <button class="tab-btn" data-tab="qna">Q&A</button>
+                    </div>
+                    <div class="tab-content active" id="descriptionTab">
+                        <div class="product-description">
+                            <h2>상품 상세 정보</h2>
+                            <div class="description-content">
+                                <p>상품에 대한 자세한 설명이 여기에 표시됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="specTab">
+                        <div class="product-spec">
+                            <h2>상품 스펙</h2>
+                            <div class="spec-content">
+                                <p>상품 스펙 정보가 여기에 표시됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="reviewsTab">
+                        <div class="product-reviews">
+                            <h2>리뷰</h2>
+                            <div class="reviews-content">
+                                <p>리뷰가 여기에 표시됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="qnaTab">
+                        <div class="product-qna">
+                            <h2>Q&A</h2>
+                            <div class="qna-content">
+                                <p>Q&A가 여기에 표시됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>고객센터</h3>
+                    <p><strong>1588-0000</strong></p>
+                    <p>평일 09:00 - 18:00</p>
+                    <p>주말/공휴일 휴무</p>
+                </div>
+                <div class="footer-section">
+                    <h3>배송안내</h3>
+                    <p>전국 무료배송</p>
+                    <p>5만원 이상 구매 시</p>
+                    <p>당일발송 가능</p>
+                </div>
+                <div class="footer-section">
+                    <h3>반품/교환</h3>
+                    <p>7일 이내 무료반품</p>
+                    <p>상품 미개봉 시</p>
+                    <p>배송비 무료</p>
+                </div>
+                <div class="footer-section">
+                    <h3>회사정보</h3>
+                    <p>상호: 동서가구</p>
+                    <p>사업자번호: 2020-성남분당A-1864호</p>
+                    <p>대표: 박현해</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 dongsuhfurniture.co.kr All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">사업자정보확인</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/header.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/recent-products.js"></script>
+    <script src="js/product-detail.js"></script>
+</body>
+
+</html>

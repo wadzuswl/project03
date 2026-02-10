@@ -1,0 +1,268 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+/* ============================================
+   Common Styles
+   ============================================ */
+
+/* Common CSS */
+* {
+  font-family: $ff-primary-kr;
+  color: $c-text-primary2;
+}
+
+body {
+  @include text-style($fs-md, $fw-regular, $lh-base);
+  overflow-x: hidden;
+}
+
+button i,
+button .bi {
+  color: currentColor;
+}
+
+/* Typography Scale */
+h1, h2, h3, h4, h5, h6 {
+  color: $c-text-primary2;
+  font-family: $ff-secondary-kr;
+}
+
+h1 { @include heading-style($fs-4xl, $fw-bold); }
+h2 { @include heading-style($fs-3xl, $fw-bold); }
+h3 { @include heading-style($fs-2xl, $fw-medium); }
+h4 { @include heading-style($fs-lg, $fw-medium); }
+h5 { @include heading-style($fs-lg, $fw-medium); }
+h6 { @include heading-style($fs-md, $fw-medium); }
+
+/* Point Font Utility */
+.font-point {
+  font-family: $ff-secondary-kr;
+}
+
+/* 특이 포인트 폰트 */
+.font-accent {
+  font-family: $ff-accent;
+}
+
+/* 포인트가 필요한 텍스트에 적용 */
+.product-badge,
+.top3-rank-badge span,
+.product-rank,
+.matrix-banner-badge,
+.deal-banner-badge {
+  font-family: $ff-accent;
+}
+
+/* 강조 텍스트 */
+.product-price .price-sale,
+.product-detail-price .price-sale,
+.rating-score,
+.review-count strong,
+.matrix-banner-title,
+.deal-banner-title,
+.btn,
+.btn-cart,
+.add-to-cart-btn {
+  font-family: $ff-secondary-kr;
+}
+
+/* Accessibility Helpers */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: $spacing-xs + 3px;
+  padding: $spacing-sm $spacing-md * 0.7;
+  border-radius: $r-md;
+  background: $c-brand-main;
+  color: $c-white;
+  z-index: 800;
+  transform: translateY(-200%);
+  transition: $transition-base;
+
+  &:focus {
+    transform: translateY(0);
+    outline: 3px solid rgba($c-brand-sub, 0.35);
+    outline-offset: 3px;
+  }
+}
+
+.noscript-notice {
+  width: min(1160px, 100%);
+  margin: $spacing-sm auto;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $c-border-primary;
+  border-radius: $r-md;
+  background: rgba($c-warning, 0.12);
+  color: $c-text-primary2;
+}
+
+section {
+  padding: ($spacing-xl + $spacing-lg) 0;
+}
+
+[class*="inner"] {
+  @include container;
+}
+
+.container {
+  @include container;
+}
+
+/* Section Title */
+.section-title {
+  @include heading-style($fs-3xl, $fw-bold);
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  color: $c-text-primary2;
+  position: relative;
+  padding-bottom: $spacing-md;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: $spacing-xl + $spacing-lg;
+    height: 4px;
+    background: linear-gradient(90deg, $c-brand-main, $c-brand-sub);
+    border-radius: $r-sm;
+  }
+}
+
+/* Page Header */
+.page-header {
+  background: linear-gradient(135deg, rgba($c-brand-main, 0.1) 0%, rgba($c-warning, 0.1) 100%);
+  padding: ($spacing-xl + $spacing-lg) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($c-brand-main, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($c-warning, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .page-title {
+    @include heading-style($fs-4xl, $fw-bold);
+    margin-bottom: $spacing-md;
+    color: $c-text-primary2;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-description {
+    @include text-style($fs-lg, $fw-regular, $lh-base);
+    color: $c-text-muted;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Page Header Variants */
+.page-header--products {
+  background: linear-gradient(135deg, rgba(46, 107, 168, 0.55) 0%, rgba(31, 78, 121, 0.45) 100%),
+    url('https://cdn.imweb.me/thumbnail/20250623/3f8ca4a06ce6d.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    background: radial-gradient(circle, rgba(46, 107, 168, 0.18) 0%, transparent 70%);
+  }
+
+  &::after {
+    background: radial-gradient(circle, rgba(31, 78, 121, 0.16) 0%, transparent 70%);
+  }
+}
+
+.page-header--best {
+  background: linear-gradient(135deg, rgba(255, 217, 18, 0.45) 0%, rgba(237, 32, 64, 0.45) 100%),
+    url('https://cdn.imweb.me/thumbnail/20250716/5947177243085.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    background: radial-gradient(circle, rgba(255, 217, 18, 0.18) 0%, transparent 70%);
+  }
+
+  &::after {
+    background: radial-gradient(circle, rgba(237, 32, 64, 0.18) 0%, transparent 70%);
+  }
+}
+
+.page-header--cart {
+  background: linear-gradient(135deg, rgba(10, 117, 54, 0.5) 0%, rgba(46, 107, 168, 0.4) 100%),
+    url('https://cdn.imweb.me/thumbnail/20250703/2a3add2fa661d.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    background: radial-gradient(circle, rgba(10, 117, 54, 0.18) 0%, transparent 70%);
+  }
+
+  &::after {
+    background: radial-gradient(circle, rgba(46, 107, 168, 0.16) 0%, transparent 70%);
+  }
+}
+
+.page-header--mypage {
+  background: linear-gradient(135deg, rgba(31, 78, 121, 0.5) 0%, rgba(46, 107, 168, 0.45) 100%),
+    url('https://cdn.imweb.me/thumbnail/20250716/f2251f23f5e22.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    background: radial-gradient(circle, rgba(31, 78, 121, 0.18) 0%, transparent 70%);
+  }
+
+  &::after {
+    background: radial-gradient(circle, rgba(46, 107, 168, 0.18) 0%, transparent 70%);
+  }
+}
+
+.page-header--products,
+.page-header--best,
+.page-header--cart,
+.page-header--mypage {
+  .page-title,
+  .page-description {
+    color: $c-white;
+  }
+}
+
+/* Page Content */
+.page-content {
+  padding: $spacing-xl 0;
+}

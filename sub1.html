@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품목록 - 동서가구</title>
+    <link rel="icon" type="image/png" href="source/favicon.png">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img src="source/logo.svg" alt="동서가구" class="brand-logo">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="sub1.html" class="active">상품목록</a></li>
+                    <li><a href="sub2.html">베스트</a></li>
+                    <li><a href="sub3.html">장바구니</a></li>
+                    <li><a href="sub4.html">마이페이지</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="nav-icon search-toggle" id="searchToggle" type="button" aria-label="검색 열기/닫기">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <a href="sub3.html" class="nav-icon" aria-label="장바구니">
+                        <i class="bi bi-cart3"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="sub4.html" class="nav-icon" aria-label="마이페이지">
+                        <i class="bi bi-person"></i>
+                    </a>
+                </div>
+                <button class="nav-toggle" aria-label="메뉴 토글">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 헤더 아래 독립 검색 패널 -->
+    <div class="search-panel" id="searchPanel" aria-hidden="true">
+        <div class="search-panel-inner">
+            <label for="searchInput" class="sr-only">상품 검색</label>
+            <div class="search-input-wrap">
+                <input type="text" id="searchInput" class="search-input" placeholder="상품 검색..." autocomplete="off"
+                    aria-expanded="false">
+                <button class="search-btn" type="button" aria-label="검색 실행"><i class="bi bi-search"></i></button>
+                <button class="search-close" type="button" aria-label="검색 닫기"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+    </div>
+
+    <main class="main">
+        <section class="page-header page-header--products">
+            <div class="container">
+                <h1 class="page-title">상품 목록</h1>
+                <p class="page-description">다양한 카테고리의 상품을 만나보세요</p>
+            </div>
+        </section>
+
+        <section class="page-content">
+            <div class="container">
+                <!-- 반응형 라디오 필터 -->
+                <div class="mobile-filter-radio" id="mobileFilterRadio">
+                    <div class="filter-group">
+                        <h3>카테고리</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="category" value="all" checked> 전체</label>
+                            <label><input type="radio" name="category" value="electronics"> 생활</label>
+                            <label><input type="radio" name="category" value="fashion"> 수납</label>
+                            <label><input type="radio" name="category" value="beauty"> 공간</label>
+                            <label><input type="radio" name="category" value="home"> 휴식</label>
+                            <label><input type="radio" name="category" value="sports"> 분위기</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h3>가격대</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="price" value="all" checked> 전체</label>
+                            <label><input type="radio" name="price" value="under50"> ~ 50,000원</label>
+                            <label><input type="radio" name="price" value="50-100"> 50,000원 ~ 100,000원</label>
+                            <label><input type="radio" name="price" value="100-200"> 100,000원 ~ 200,000원</label>
+                            <label><input type="radio" name="price" value="over200"> 200,000원 ~</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h3>정렬</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="sort" value="popular" checked> 인기순</label>
+                            <label><input type="radio" name="sort" value="price-low"> 가격 낮은순</label>
+                            <label><input type="radio" name="sort" value="price-high"> 가격 높은순</label>
+                            <label><input type="radio" name="sort" value="newest"> 최신순</label>
+                            <label><input type="radio" name="sort" value="reviews"> 리뷰 많은순</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-wrapper">
+                    <!-- 필터 사이드바 -->
+                    <aside class="sidebar">
+                        <div class="filter-widget">
+                            <h3>카테고리</h3>
+                            <ul class="filter-list">
+                                <li><a href="#" class="active">전체</a></li>
+                                <li><a href="#">생활</a></li>
+                                <li><a href="#">수납</a></li>
+                                <li><a href="#">공간</a></li>
+                                <li><a href="#">휴식</a></li>
+                                <li><a href="#">분위기</a></li>
+                            </ul>
+                        </div>
+                        <div class="filter-widget">
+                            <h3>가격대</h3>
+                            <ul class="filter-list">
+                                <li><a href="#">전체</a></li>
+                                <li><a href="#">~ 50,000원</a></li>
+                                <li><a href="#">50,000원 ~ 100,000원</a></li>
+                                <li><a href="#">100,000원 ~ 200,000원</a></li>
+                                <li><a href="#">200,000원 ~</a></li>
+                            </ul>
+                        </div>
+                        <div class="filter-widget">
+                            <h3>정렬</h3>
+                            <ul class="filter-list">
+                                <li><a href="#">인기순</a></li>
+                                <li><a href="#">가격 낮은순</a></li>
+                                <li><a href="#">가격 높은순</a></li>
+                                <li><a href="#">최신순</a></li>
+                                <li><a href="#">리뷰 많은순</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+
+                    <!-- 상품 목록 -->
+                    <div class="products-list">
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <span class="product-badge sale">30%</span>
+                                    <img src="https://picsum.photos/300/300?random=20" alt="상품 이미지"
+                                        class="product-image">
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn"><i class="bi bi-eye"></i> 빠른보기</button>
+                                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-rating">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                        <span class="rating-text">4.5 (234)</span>
+                                    </div>
+                                    <h3 class="product-title">프리미엄 무선 이어폰</h3>
+                                    <div class="product-price">
+                                        <span class="price-original">129,000원</span>
+                                        <span class="price-sale">89,000원</span>
+                                    </div>
+                                    <div class="product-meta">
+                                        <span class="delivery-info"><i class="bi bi-truck"></i> 무료배송</span>
+                                    </div>
+                                    <button class="add-to-cart-btn"><i class="bi bi-cart-plus"></i> 장바구니</button>
+                                </div>
+                            </div>
+                            <!-- 상품 카드 반복 -->
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <span class="product-badge hot">HOT</span>
+                                    <img src="https://picsum.photos/300/300?random=20" alt="상품 이미지"
+                                        class="product-image">
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn"><i class="bi bi-eye"></i> 빠른보기</button>
+                                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-rating">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star"></i>
+                                        <span class="rating-text">4.0 (189)</span>
+                                    </div>
+                                    <h3 class="product-title">스마트 워치 프로</h3>
+                                    <div class="product-price">
+                                        <span class="price-sale">299,000원</span>
+                                    </div>
+                                    <div class="product-meta">
+                                        <span class="delivery-info"><i class="bi bi-truck"></i> 무료배송</span>
+                                    </div>
+                                    <button class="add-to-cart-btn"><i class="bi bi-cart-plus"></i> 장바구니</button>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <span class="product-badge sale">20%</span>
+                                    <img src="https://picsum.photos/300/300?random=20" alt="상품 이미지"
+                                        class="product-image">
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn"><i class="bi bi-eye"></i> 빠른보기</button>
+                                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-rating">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <span class="rating-text">5.0 (456)</span>
+                                    </div>
+                                    <h3 class="product-title">노트북 스탠드</h3>
+                                    <div class="product-price">
+                                        <span class="price-original">59,000원</span>
+                                        <span class="price-sale">47,200원</span>
+                                    </div>
+                                    <div class="product-meta">
+                                        <span class="delivery-info"><i class="bi bi-truck"></i> 무료배송</span>
+                                    </div>
+                                    <button class="add-to-cart-btn"><i class="bi bi-cart-plus"></i> 장바구니</button>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <span class="product-badge best">BEST</span>
+                                    <img src="https://picsum.photos/300/300?random=20" alt="상품 이미지"
+                                        class="product-image">
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn"><i class="bi bi-eye"></i> 빠른보기</button>
+                                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-rating">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                        <span class="rating-text">4.7 (892)</span>
+                                    </div>
+                                    <h3 class="product-title">무선 충전기</h3>
+                                    <div class="product-price">
+                                        <span class="price-sale">39,000원</span>
+                                    </div>
+                                    <div class="product-meta">
+                                        <span class="delivery-info"><i class="bi bi-truck"></i> 무료배송</span>
+                                    </div>
+                                    <button class="add-to-cart-btn"><i class="bi bi-cart-plus"></i> 장바구니</button>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <span class="product-badge sale">15%</span>
+                                    <img src="https://picsum.photos/300/300?random=20" alt="상품 이미지"
+                                        class="product-image">
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn"><i class="bi bi-eye"></i> 빠른보기</button>
+                                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-rating">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star"></i>
+                                        <span class="rating-text">4.2 (156)</span>
+                                    </div>
+                                    <h3 class="product-title">블루투스 스피커</h3>
+                                    <div class="product-price">
+                                        <span class="price-original">89,000원</span>
+                                        <span class="price-sale">75,650원</span>
+                                    </div>
+                                    <div class="product-meta">
+                                        <span class="delivery-info"><i class="bi bi-truck"></i> 무료배송</span>
+                                    </div>
+                                    <button class="add-to-cart-btn"><i class="bi bi-cart-plus"></i> 장바구니</button>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <span class="product-badge new">NEW</span>
+                                    <img src="https://picsum.photos/300/300?random=20" alt="상품 이미지"
+                                        class="product-image">
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn"><i class="bi bi-eye"></i> 빠른보기</button>
+                                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-rating">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                        <span class="rating-text">4.6 (78)</span>
+                                    </div>
+                                    <h3 class="product-title">스마트폰 케이스</h3>
+                                    <div class="product-price">
+                                        <span class="price-sale">24,900원</span>
+                                    </div>
+                                    <div class="product-meta">
+                                        <span class="delivery-info"><i class="bi bi-truck"></i> 무료배송</span>
+                                    </div>
+                                    <button class="add-to-cart-btn"><i class="bi bi-cart-plus"></i> 장바구니</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>고객센터</h3>
+                    <p><strong>1588-0000</strong></p>
+                    <p>평일 09:00 - 18:00</p>
+                    <p>주말/공휴일 휴무</p>
+                </div>
+                <div class="footer-section">
+                    <h3>배송안내</h3>
+                    <p>전국 무료배송</p>
+                    <p>5만원 이상 구매 시</p>
+                    <p>당일발송 가능</p>
+                </div>
+                <div class="footer-section">
+                    <h3>반품/교환</h3>
+                    <p>7일 이내 무료반품</p>
+                    <p>상품 미개봉 시</p>
+                    <p>배송비 무료</p>
+                </div>
+                <div class="footer-section">
+                    <h3>회사정보</h3>
+                    <p>상호: 동서가구</p>
+                    <p>사업자번호: 2020-성남분당A-1864호</p>
+                    <p>대표: 박현해</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 dongsuhfurniture.co.kr All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">사업자정보확인</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/header.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+        // ============================================
+        // 모바일(테블릿/모바일) 필터 라디오 기능
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileFilter = document.getElementById('mobileFilterRadio');
+            const productsGrid = document.querySelector('.products-grid');
+
+            if (!mobileFilter || !productsGrid || typeof loadProducts !== 'function') return;
+
+            // 기본 상품 리스트 구성 (검색 결과가 있으면 검색 결과 기준)
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            let baseList = [];
+
+            if (searchQuery && typeof searchProducts === 'function') {
+                const searchResults = searchProducts(searchQuery) || [];
+                baseList = searchResults.slice();
+            } else if (window.productsData) {
+                const allProducts = [
+                    ...(productsData.best || []),
+                    ...(productsData.new || []),
+                    ...(productsData.sale || [])
+                ];
+                const uniqueProducts = allProducts.filter((product, index, self) =>
+                    index === self.findIndex(p => p.id === product.id)
+                );
+                baseList = uniqueProducts.slice(0, 12);
+            }
+
+            if (!baseList.length) return;
+
+            function getCheckedValue(name) {
+                const input = mobileFilter.querySelector('input[name="' + name + '"]:checked');
+                return input ? input.value : 'all';
+            }
+
+            function applyMobileFilters() {
+                let filtered = baseList.slice();
+
+                const category = getCheckedValue('category');
+                const price = getCheckedValue('price');
+                const sort = getCheckedValue('sort');
+
+                // 카테고리 필터
+                // 현재 데이터에는 category 필드가 없어서 '전체'만 사용.
+                if (category !== 'all') {
+                    // TODO: products-data.js에 category 필드를 추가하면 여기서 실제 필터링 가능
+                }
+
+                // 가격대 필터 (salePrice 기준, 없으면 price 사용)
+                if (price !== 'all') {
+                    filtered = filtered.filter(function (p) {
+                        const basePrice = typeof p.salePrice === 'number' ? p.salePrice : p.price;
+                        if (!basePrice || isNaN(basePrice)) return false;
+
+                        if (price === 'under50') return basePrice < 50000;
+                        if (price === '50-100') return basePrice >= 50000 && basePrice < 100000;
+                        if (price === '100-200') return basePrice >= 100000 && basePrice < 200000;
+                        if (price === 'over200') return basePrice >= 200000;
+                        return true;
+                    });
+                }
+
+                // 정렬 옵션
+                var sorted = filtered.slice();
+                if (sort === 'price-low') {
+                    sorted.sort(function (a, b) {
+                        const pa = typeof a.salePrice === 'number' ? a.salePrice : a.price;
+                        const pb = typeof b.salePrice === 'number' ? b.salePrice : b.price;
+                        return (pa || 0) - (pb || 0);
+                    });
+                } else if (sort === 'price-high') {
+                    sorted.sort(function (a, b) {
+                        const pa = typeof a.salePrice === 'number' ? a.salePrice : a.price;
+                        const pb = typeof b.salePrice === 'number' ? b.salePrice : b.price;
+                        return (pb || 0) - (pa || 0);
+                    });
+                } else if (sort === 'newest') {
+                    // ID가 클수록 최신이라고 가정
+                    sorted.sort(function (a, b) {
+                        return (b.id || 0) - (a.id || 0);
+                    });
+                } else if (sort === 'reviews') {
+                    sorted.sort(function (a, b) {
+                        return (b.reviews || 0) - (a.reviews || 0);
+                    });
+                } else {
+                    // 인기순 기본: 리뷰 많은 순
+                    sorted.sort(function (a, b) {
+                        return (b.reviews || 0) - (a.reviews || 0);
+                    });
+                }
+
+                // 필터 결과를 그리드에 반영
+                loadProducts(null, sorted);
+            }
+
+            // 라디오 변경 시 필터 적용
+            mobileFilter.querySelectorAll('input[type="radio"]').forEach(function (input) {
+                input.addEventListener('change', applyMobileFilters);
+            });
+
+            // 초기 렌더링도 필터 기준으로 정렬해서 보여주기
+            applyMobileFilters();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- 웹표준: HTML 문서의 문자 인코딩을 UTF-8로 지정 (한글 깨짐 방지) -->
+    <meta charset="UTF-8">
+    <!-- 웹표준 + 반응형: 기기 해상도에 맞게 화면 비율 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 웹표준 + SEO:
+         페이지 내용을 요약하는 메타 정보
+         검색 엔진 결과 페이지(SERP)에 노출됨 -->
+    <meta name="description" content="동서가구 - 동서가구 본사 공식 온라인 쇼핑몰입니다">
+    <title>동서가구</title>
+    <link rel="icon" type="image/png" href="source/favicon.png">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+    <!-- 접근성: 키보드 사용자를 위한 건너뛰기 링크 -->
+    <a class="skip-link" href="#main">본문 바로가기</a>
+    <noscript>
+        <div class="noscript-notice">
+            이 페이지는 원활한 동작을 위해 JavaScript가 필요합니다. 브라우저 설정에서 JavaScript를 활성화해주세요.
+        </div>
+    </noscript>
+
+    <header class="header">
+        <div class="header-inner">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img src="source/logo.svg" alt="동서가구 로고" class="brand-logo">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">홈</a></li>
+                    <li><a href="sub1.html">상품목록</a></li>
+                    <li><a href="sub2.html">베스트</a></li>
+                    <li><a href="sub3.html">장바구니</a></li>
+                    <li><a href="sub4.html">마이페이지</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="nav-icon search-toggle" id="searchToggle" type="button" aria-label="검색 열기/닫기">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <a href="sub3.html" class="nav-icon" aria-label="장바구니">
+                        <i class="bi bi-cart3"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="sub4.html" class="nav-icon" aria-label="마이페이지">
+                        <i class="bi bi-person"></i>
+                    </a>
+                </div>
+                <!--햄버거-->
+                <button class="nav-toggle" aria-label="메뉴 토글">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 헤더 아래 독립 검색 패널 -->
+    <div class="search-panel" id="searchPanel" aria-hidden="true">
+        <div class="search-panel-inner">
+            <label for="searchInput" class="sr-only">상품 검색</label>
+            <div class="search-input-wrap">
+                <input type="text" id="searchInput" class="search-input" placeholder="상품 검색..." autocomplete="off"
+                    aria-expanded="false">
+                <button class="search-btn" type="button" aria-label="검색 실행"><i class="bi bi-search"></i></button>
+                <button class="search-close" type="button" aria-label="검색 닫기"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+    </div>
+
+    <!-- 실시간 구매 알림 -->
+    <div class="live-notification" id="liveNotification">
+        <div class="notification-content">
+            <img src="https://i.pravatar.cc/40?img=1" alt="구매 알림 프로필" class="notification-avatar">
+            <div class="notification-text">
+                <strong>김**님</strong>이 <span class="product-name">테라 천연 면피가죽 온열 황토볼 4인용 흙소파</span>을 구매했습니다
+            </div>
+            <button class="notification-close" type="button" aria-label="알림 닫기">&times;</button>
+        </div>
+    </div>
+
+    <main class="main" id="main">
+        <!-- 상단 덩어리: 왼쪽 메인 + 오른쪽 리스트 -->
+        <section class="home-top">
+            <div class="container">
+                <div class="home-top-grid">
+                    <article class="home-feature" id="homeFeature">
+                        <div class="feature-bg"></div>
+                        <div class="feature-body">
+                            <div>
+                                <div class="feature-kicker"><i class="bi bi-stars"></i> 신년특가 새해 복 받아 가세요</div>
+                                <h1 class="feature-title">바키 빅 슬라이딩 수납침대</h1>
+                                <p class="feature-desc">SALE · BEST · 797,500원 → 183,950원 (74%) · 무</p>
+                                <a class="feature-cta" href="#">
+                                    상세 보기 <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="feature-media"></div>
+                        </div>
+                    </article>
+                    <div class="home-side">
+                        <div class="home-side-header">
+                            <h2 class="home-side-title">지금 많이 보는 상품</h2>
+                            <a class="home-side-link" href="sub1.html">전체보기 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                        <div class="home-side-list" id="homeSideList">
+                            <!-- JS로 채워집니다 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 중간 덩어리: 타이머 + 배너 -->
+        <section class="deal-row">
+            <div class="container">
+                <div class="deal-grid">
+                    <div class="deal-timer">
+                        <div class="deal-timer-head">
+                            <h2 id="dealTitle" class="deal-title">특가 할인 종료까지</h2>
+                            <a href="sub1.html" class="deal-link">특가 보러가기 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                        <div class="deal-clock" id="countdownTimer">
+                            <div class="deal-unit">
+                                <span class="deal-num" id="days">00</span>
+                                <span class="deal-label">일</span>
+                            </div>
+                            <span class="deal-sep">:</span>
+                            <div class="deal-unit">
+                                <span class="deal-num" id="hours">00</span>
+                                <span class="deal-label">시간</span>
+                            </div>
+                            <span class="deal-sep">:</span>
+                            <div class="deal-unit">
+                                <span class="deal-num" id="minutes">00</span>
+                                <span class="deal-label">분</span>
+                            </div>
+                            <span class="deal-sep">:</span>
+                            <div class="deal-unit">
+                                <span class="deal-num" id="seconds">00</span>
+                                <span class="deal-label">초</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="deal-banner" href="sub1.html">
+                        <div class="deal-banner-badge">EVENT</div>
+                        <div class="deal-banner-title">오늘만 추가 할인</div>
+                        <div class="deal-banner-desc">베스트 상품 쿠폰 적용 가능</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 가로 스크롤: 클래스/스토리 추천 -->
+        <section class="hscroll-section">
+            <div class="container">
+                <div class="section-header compact">
+                    <h2 class="section-title">추천 스토리</h2>
+                    <div class="hscroll-controls">
+                        <button class="hscroll-arrow" id="storyPrev" type="button" aria-label="추천 스토리 이전">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <button class="hscroll-arrow" id="storyNext" type="button" aria-label="추천 스토리 다음">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="hscroll" id="storyScroll">
+                    <!-- JS로 채워집니다 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 가로 스크롤: 신상품 -->
+        <section class="hscroll-section">
+            <div class="container">
+                <div class="section-header compact">
+                    <h2 class="section-title">신상품</h2>
+                    <a href="sub1.html" class="view-all-btn">전체보기 <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="hscroll" id="newScroll">
+                    <article class="hcard">
+                        <a href="#">
+                            <img src="https://picsum.photos/300/300?random=1" alt="신상품">
+                        </a>
+                        <div class="hbody">
+                            <div class="htitle">신상품</div>
+                            <div class="hmeta">
+                                <span>0원</span>
+                                <span>리뷰 0</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="hcard">
+                        <a href="#">
+                            <img src="https://picsum.photos/300/300?random=2" alt="신상품">
+                        </a>
+                        <div class="hbody">
+                            <div class="htitle">신상품</div>
+                            <div class="hmeta">
+                                <span>0원</span>
+                                <span>리뷰 0</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="hcard">
+                        <a href="#">
+                            <img src="https://picsum.photos/300/300?random=3" alt="신상품">
+                        </a>
+                        <div class="hbody">
+                            <div class="htitle">신상품</div>
+                            <div class="hmeta">
+                                <span>0원</span>
+                                <span>리뷰 0</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="hcard">
+                        <a href="#">
+                            <img src="https://picsum.photos/300/300?random=4" alt="신상품">
+                        </a>
+                        <div class="hbody">
+                            <div class="htitle">신상품</div>
+                            <div class="hmeta">
+                                <span>0원</span>
+                                <span>리뷰 0</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="hcard">
+                        <a href="#">
+                            <img src="https://picsum.photos/300/300?random=5" alt="신상품">
+                        </a>
+                        <div class="hbody">
+                            <div class="htitle">신상품</div>
+                            <div class="hmeta">
+                                <span>0원</span>
+                                <span>리뷰 0</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="hcard">
+                        <a href="#">
+                            <img src="https://picsum.photos/300/300?random=6" alt="신상품">
+                        </a>
+                        <div class="hbody">
+                            <div class="htitle">신상품</div>
+                            <div class="hmeta">
+                                <span>0원</span>
+                                <span>리뷰 0</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 정보/가이드 카드 -->
+        <section class="info-section">
+            <div class="container">
+                <div class="section-header compact">
+                    <h2 class="section-title">쇼핑 가이드 & 소식</h2>
+                </div>
+                <div class="info-grid" id="infoGrid">
+                    <!-- JS로 채워집니다 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 하단 매트릭스: 큰 카드 + 우측 2열 -->
+        <section class="home-matrix">
+            <div class="container">
+                <div class="section-header compact">
+                    <h2 class="section-title">추천 컬렉션</h2>
+                    <a href="sub1.html" class="view-all-btn">전체보기 <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="matrix-grid" id="matrixGrid">
+                    <!-- JS로 채워집니다 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 뉴스레터 -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-box">
+                    <div class="newsletter-content">
+                        <h2><i class="bi bi-envelope"></i> 뉴스레터 구독</h2>
+                        <p>최신 상품 정보와 특가 소식을 가장 먼저 받아보세요</p>
+                    </div>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <label class="sr-only" for="newsletterEmail">이메일 주소</label>
+                        <input id="newsletterEmail" type="email" placeholder="이메일 주소를 입력하세요" required
+                            autocomplete="email">
+                        <button type="submit">구독하기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>고객센터</h3>
+                    <p><strong>1588-0000</strong></p>
+                    <p>평일 09:00 - 18:00</p>
+                    <p>주말/공휴일 휴무</p>
+                </div>
+                <div class="footer-section">
+                    <h3>배송안내</h3>
+                    <p>전국 무료배송</p>
+                    <p>5만원 이상 구매 시</p>
+                    <p>당일발송 가능</p>
+                </div>
+                <div class="footer-section">
+                    <h3>반품/교환</h3>
+                    <p>7일 이내 무료반품</p>
+                    <p>상품 미개봉 시</p>
+                    <p>배송비 무료</p>
+                </div>
+                <div class="footer-section">
+                    <h3>회사정보</h3>
+                    <p>상호: 동서가구</p>
+                    <p>사업자번호: 2020-성남분당A-1864호</p>
+                    <p>대표: 박현해</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 dongsuhfurniture.co.kr All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">사업자정보확인</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 스크롤 탑 버튼 -->
+    <button class="scroll-top" id="scrollTop" type="button" aria-label="맨 위로">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="js/products-data.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,242 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'sass:color';
+/* ============================================
+   베스트 상품 페이지 스타일
+   ============================================ */
+
+// 상품 툴바
+.products-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $c-border-primary;
+
+  .toolbar-left {
+    .products-count {
+      font-size: $fs-sm;
+      color: $c-text-secondary;
+
+      strong {
+        color: $c-brand-main;
+        font-weight: $fw-bold;
+      }
+    }
+  }
+
+  .toolbar-right {
+    .sort-select {
+      padding: $spacing-xs $spacing-sm;
+      border: 1px solid $c-border-primary;
+      border-radius: $r-md;
+      font-size: $fs-sm;
+      background: $c-white;
+      cursor: pointer;
+      transition: $transition-base;
+
+      &:hover {
+        border-color: $c-brand-main;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $c-brand-main;
+        box-shadow: 0 0 0 3px rgba($c-brand-main, 0.1);
+      }
+    }
+  }
+}
+
+// 섹션 서브타이틀
+.section-subtitle {
+  
+  font-weight: $fw-bold;
+  margin-bottom: $spacing-md;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  color: $c-text-primary2;
+
+  i {
+    color: $c-brand-main;
+  }
+}
+
+// TOP 3 베스트 상품 섹션
+.best-top3-section {
+  margin-bottom: $spacing-2xl;
+
+  .best-top3-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+
+    @media (max-width: $bp-desktop) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $bp-tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .best-top3-card {
+    @include layout-boxshadow;
+    background: $c-bg-primary;
+    border-radius: $r-lg;
+    overflow: hidden;
+    position: relative;
+    transition: $transition-base;
+    border: 2px solid transparent;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-xl;
+      border-color: $c-brand-main;
+    }
+
+    .top3-rank-badge {
+      position: absolute;
+      top: $spacing-lg * 0.5;
+      right: $spacing-lg * 0.5;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: $spacing-xs;
+      padding: $spacing-sm $spacing-md;
+      border-radius: $r-full;
+      color: $c-white;
+      font-weight: $fw-bold;
+      font-size: $fs-md;
+      box-shadow: $shadow-md;
+
+      i {
+        font-size: $fs-xl;
+      }
+
+      // 순위별 배경색 클래스 (그라디언트 변수 사용)
+      &.rank-1 {
+        background: $g-brand-primary; // 브랜드 기본 그라디언트
+      }
+
+      &.rank-2 {
+        background: $g-brand-warm; // 브랜드 웜 그라디언트
+      }
+
+      &.rank-3 {
+        background: $g-accent-pink; // 액센트 핑크 그라디언트
+      }
+    }
+
+    .product-image-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: $c-bg-secondary;
+      
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      
+      .product-badge {
+        position: absolute;
+        top: $spacing-sm;
+        left: $spacing-sm;
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $r-full;
+        font-size: $fs-xs;
+        font-weight: $fw-bold;
+        color: $c-white;
+        z-index: 2;
+
+        &.sale {
+          background: linear-gradient(135deg, $c-error, $c-warning);
+        }
+
+        &.new {
+          background: linear-gradient(135deg, $c-success, color.adjust($c-success, $lightness: -10%));
+        }
+
+        &.hot {
+          background: linear-gradient(135deg, $c-warning, $c-brand-sub);
+        }
+
+        &.best {
+          background: linear-gradient(135deg, $c-brand-main, $c-brand-sub);
+        }
+      }
+    }
+
+    .product-info {
+      padding: 20px;
+
+      .product-rating {
+        margin-bottom: 8px;
+      }
+
+      .product-title {
+        margin-bottom: 8px;
+        min-height: auto;
+      }
+
+      .product-price {
+        margin-bottom: 8px;
+      }
+
+      .product-meta {
+        margin-bottom: 12px;
+      }
+    }
+  }
+}
+
+// 나머지 베스트 상품 섹션
+.best-others-section {
+  .best-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-md;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: $bp-desktop) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-md;
+    }
+
+    @media (max-width: $bp-tablet) {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg * 0.5;
+    }
+  }
+
+  .best-product-card {
+    .product-image-wrapper {
+      position: relative;
+
+      .product-rank {
+        position: absolute;
+        top: $spacing-sm;
+        left: $spacing-sm;
+        z-index: 5;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba($c-brand-main, 0.9);
+        color: $c-white;
+        border-radius: 50%;
+        font-size: $fs-sm;
+        font-weight: $fw-bold;
+        box-shadow: 0 2px 8px rgba($c-black, 0.2);
+      }
+    }
+  }
+}

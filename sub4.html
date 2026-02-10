@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지 - 동서가구</title>
+    <link rel="icon" type="image/png" href="source/favicon.png">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img src="source/logo.svg" alt="동서가구 로고" class="brand-logo">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="sub1.html">상품목록</a></li>
+                    <li><a href="sub2.html">베스트</a></li>
+                    <li><a href="sub3.html">장바구니</a></li>
+                    <li><a href="sub4.html" class="active">마이페이지</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="nav-icon search-toggle" id="searchToggle" type="button" aria-label="검색 열기/닫기">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <a href="sub3.html" class="nav-icon">
+                        <i class="bi bi-cart3"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="sub4.html" class="nav-icon">
+                        <i class="bi bi-person"></i>
+                    </a>
+                </div>
+                <button class="nav-toggle" aria-label="메뉴 토글">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 헤더 아래 독립 검색 패널 -->
+    <div class="search-panel" id="searchPanel" aria-hidden="true">
+        <div class="search-panel-inner">
+            <label for="searchInput" class="sr-only">상품 검색</label>
+            <div class="search-input-wrap">
+                <input type="text" id="searchInput" class="search-input" placeholder="상품 검색..." autocomplete="off"
+                    aria-expanded="false">
+                <button class="search-btn" type="button" aria-label="검색 실행"><i class="bi bi-search"></i></button>
+                <button class="search-close" type="button" aria-label="검색 닫기"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+    </div>
+
+    <main class="main">
+        <section class="page-header page-header--mypage">
+            <div class="container">
+                <h1 class="page-title">마이페이지</h1>
+                <p class="page-description">주문 내역과 회원 정보를 관리하세요</p>
+            </div>
+        </section>
+
+        <section class="page-content">
+            <div class="container">
+                <div class="mypage-wrapper">
+                    <!-- 사이드바 메뉴 -->
+                    <aside class="mypage-sidebar">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                            <h3>홍길동님</h3>
+                            <p>gold@example.com</p>
+                        </div>
+                        <nav class="mypage-menu">
+                            <a href="#" class="menu-item active" data-target="orders">
+                                <i class="bi bi-receipt"></i>
+                                <span>주문내역</span>
+                            </a>
+                            <a href="#" class="menu-item" data-target="wishlist">
+                                <i class="bi bi-heart"></i>
+                                <span>찜한 상품</span>
+                            </a>
+                            <a href="#" class="menu-item" data-target="reviews">
+                                <i class="bi bi-star"></i>
+                                <span>리뷰 관리</span>
+                            </a>
+                            <a href="#" class="menu-item" data-target="profile">
+                                <i class="bi bi-gear"></i>
+                                <span>회원정보 수정</span>
+                            </a>
+                            <a href="#" class="menu-item" data-target="addresses">
+                                <i class="bi bi-shield-check"></i>
+                                <span>배송지 관리</span>
+                            </a>
+                        </nav>
+                    </aside>
+
+                    <!-- 메인 콘텐츠 -->
+                    <div class="mypage-content">
+                        <section class="mypage-panel active" data-panel="orders">
+                            <div class="order-summary">
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="bi bi-box-seam"></i>
+                                    </div>
+                                    <div class="summary-info">
+                                        <span class="summary-label">배송중</span>
+                                        <span class="summary-count">2</span>
+                                    </div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="bi bi-check-circle"></i>
+                                    </div>
+                                    <div class="summary-info">
+                                        <span class="summary-label">배송완료</span>
+                                        <span class="summary-count">15</span>
+                                    </div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="bi bi-cart-check"></i>
+                                    </div>
+                                    <div class="summary-info">
+                                        <span class="summary-label">주문완료</span>
+                                        <span class="summary-count">23</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="order-list">
+                                <h2>최근 주문 내역</h2>
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <div class="order-info">
+                                            <span class="order-date">2024.01.15</span>
+                                            <span class="order-number">주문번호: ORD-2024-001234</span>
+                                        </div>
+                                        <span class="order-status preparing">배송준비중</span>
+                                    </div>
+                                    <div class="order-products">
+                                        <div class="order-product">
+                                            <img src="https://cdn-pro-web-209-40.cdn-nhncommerce.com/edftr76860385_godomall_com/data/goods/22/05/18//13274/register_detail_013.jpg"
+                                                alt="동서가구 리온 800 좌식 거울 화장대">
+                                            <div class="order-product-info">
+                                                <h4>동서가구 리온 800 좌식 거울 화장대</h4>
+                                                <p>색상: 블랙 / 수량: 1개</p>
+                                                <span class="order-product-price">40,900원</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="order-footer">
+                                        <span class="order-total">총 결제금액: 40,900원</span>
+                                        <div class="order-actions">
+                                            <button class="btn-secondary">주문취소</button>
+                                            <button class="btn-primary">배송조회</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <div class="order-info">
+                                            <span class="order-date">2024.01.10</span>
+                                            <span class="order-number">주문번호: ORD-2024-001189</span>
+                                        </div>
+                                        <span class="order-status delivered">배송완료</span>
+                                    </div>
+                                    <div class="order-products">
+                                        <div class="order-product">
+                                            <img src="https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/32753/image/detail/32753_detail_048.jpg"
+                                                alt="동서가구 블록 서랍장">
+                                            <div class="order-product-info">
+                                                <h4>동서가구 블록 서랍장</h4>
+                                                <p>색상: 그레이 / 수량: 1개</p>
+                                                <span class="order-product-price">69,000원</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="order-footer">
+                                        <span class="order-total">총 결제금액: 69,000원</span>
+                                        <div class="order-actions">
+                                            <button class="btn-secondary">리뷰작성</button>
+                                            <button class="btn-primary">재주문</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <div class="order-info">
+                                            <span class="order-date">2024.01.05</span>
+                                            <span class="order-number">주문번호: ORD-2024-001056</span>
+                                        </div>
+                                        <span class="order-status shipping">배송중</span>
+                                    </div>
+                                    <div class="order-products">
+                                        <div class="order-product">
+                                            <img src="https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/32764/image/detail/32764_detail_078.jpg"
+                                                alt="모나크 세라믹 4인 원목 식탁세트">
+                                            <div class="order-product-info">
+                                                <h4>모나크 세라믹 4인 원목 식탁세트</h4>
+                                                <p>색상: 브라운 / 수량: 1개</p>
+                                                <span class="order-product-price">818,000원</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="order-footer">
+                                        <span class="order-total">총 결제금액: 818,000원</span>
+                                        <div class="order-actions">
+                                            <button class="btn-primary">배송조회</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mypage-panel" data-panel="wishlist">
+                            <div class="order-list">
+                                <h2>찜한 상품</h2>
+                                <div class="wishlist-grid" id="wishlistGrid" style="display: none;">
+                                    <!-- 찜한 상품이 동적으로 로드됩니다 -->
+                                </div>
+                                <div class="wishlist-empty" id="wishlistEmpty">
+                                    <div class="empty-state">
+                                        <i class="bi bi-heart empty-icon"></i>
+                                        <h3>찜한 상품이 없습니다</h3>
+                                        <p>상품 페이지에서 하트 아이콘을 눌러 관심 상품을 추가해보세요.</p>
+                                        <a href="sub1.html" class="btn btn-primary">상품 둘러보기</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mypage-panel" data-panel="reviews">
+                            <div class="order-list">
+                                <h2>리뷰 관리</h2>
+                                <div class="review-tabs">
+                                    <button class="review-tab active" data-tab="pending">작성 가능한 리뷰</button>
+                                    <button class="review-tab" data-tab="written">작성한 리뷰</button>
+                                </div>
+
+                                <div class="review-content">
+                                    <div class="review-section active" data-section="pending">
+                                        <div class="review-item">
+                                            <div class="review-product">
+                                                <img src="https://www.etlandmall.co.kr/nas/cdn/attach/product/2025/07/08/S6294029/SYS_2025070816119_0_600.jpg"
+                                                    alt="애플 워치 SE 2세대">
+                                                <div class="review-product-info">
+                                                    <h4>애플 워치 SE 2세대</h4>
+                                                    <p>주문일: 2024.01.10</p>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary">리뷰 작성하기</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-section" data-section="written">
+                                        <div class="written-review">
+                                            <div class="review-header">
+                                                <div class="review-product">
+                                                    <img src="https://www.etlandmall.co.kr/nas/cdn/attach/product/2025/10/15/B0597934/B0597934_0_600.jpg"
+                                                        alt="삼성 갤럭시 버즈3 프로">
+                                                    <div class="review-product-info">
+                                                        <h4>삼성 갤럭시 버즈3 프로</h4>
+                                                        <div class="review-rating">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half"></i>
+                                                            <span>4.5</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="review-date">2024.01.08</span>
+                                            </div>
+                                            <div class="review-body">
+                                                <p>음질이 정말 좋고 배터리도 오래가네요. 착용감도 편안하고 추천합니다!</p>
+                                            </div>
+                                            <div class="review-actions">
+                                                <button class="btn btn-secondary">수정</button>
+                                                <button class="btn btn-secondary">삭제</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mypage-panel" data-panel="profile">
+                            <div class="order-list">
+                                <h2>회원정보 수정</h2>
+                                <div class="profile-section">
+                                    <div class="profile-avatar-section">
+                                        <div class="profile-avatar">
+                                            <i class="bi bi-person-circle"></i>
+                                        </div>
+                                        <button class="btn btn-secondary">프로필 사진 변경</button>
+                                    </div>
+
+                                    <form class="profile-form">
+                                        <div class="form-group">
+                                            <label>이름 <span class="required">*</span></label>
+                                            <input type="text" value="홍길동" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>이메일 <span class="required">*</span></label>
+                                            <input type="email" value="gold@example.com" required readonly>
+                                            <small class="form-help">이메일은 변경할 수 없습니다.</small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>전화번호</label>
+                                            <input type="tel" placeholder="010-0000-0000" value="010-1234-5678">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>생년월일</label>
+                                            <input type="date" value="1990-01-01">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>성별</label>
+                                            <div class="radio-group">
+                                                <label><input type="radio" name="gender" value="male" checked>
+                                                    남성</label>
+                                                <label><input type="radio" name="gender" value="female"> 여성</label>
+                                                <label><input type="radio" name="gender" value="other"> 선택안함</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button class="btn btn-primary" type="submit">저장하기</button>
+                                            <button class="btn btn-secondary" type="button">취소</button>
+                                        </div>
+                                    </form>
+
+                                    <div class="profile-security">
+                                        <h3>보안 설정</h3>
+                                        <div class="security-item">
+                                            <div class="security-info">
+                                                <h4>비밀번호 변경</h4>
+                                                <p>마지막 변경일: 2024.01.01</p>
+                                            </div>
+                                            <button class="btn btn-secondary">변경하기</button>
+                                        </div>
+                                        <div class="security-item">
+                                            <div class="security-info">
+                                                <h4>계정 삭제</h4>
+                                                <p>계정을 삭제하면 모든 정보가 영구적으로 삭제됩니다.</p>
+                                            </div>
+                                            <button class="btn btn-danger">계정 삭제</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mypage-panel" data-panel="addresses">
+                            <div class="order-list">
+                                <div class="address-header">
+                                    <h2>배송지 관리</h2>
+                                    <button class="btn btn-primary" id="addAddressBtn">배송지 추가</button>
+                                </div>
+
+                                <div class="address-list">
+                                    <div class="address-item">
+                                        <div class="address-info">
+                                            <div class="address-header-info">
+                                                <h4>홍길동</h4>
+                                                <span class="address-badge default">기본 배송지</span>
+                                            </div>
+                                            <p class="address-phone">010-1234-5678</p>
+                                            <p class="address-detail">서울특별시 강남구 테헤란로 123, 456호 (역삼동)</p>
+                                            <p class="address-postal">우편번호: 06142</p>
+                                        </div>
+                                        <div class="address-actions">
+                                            <button class="btn btn-secondary">수정</button>
+                                            <button class="btn btn-secondary">삭제</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="address-item">
+                                        <div class="address-info">
+                                            <div class="address-header-info">
+                                                <h4>홍길동</h4>
+                                            </div>
+                                            <p class="address-phone">010-1234-5678</p>
+                                            <p class="address-detail">부산광역시 해운대구 해운대해변로 264 (우동)</p>
+                                            <p class="address-postal">우편번호: 48058</p>
+                                        </div>
+                                        <div class="address-actions">
+                                            <button class="btn btn-secondary">기본 배송지로 설정</button>
+                                            <button class="btn btn-secondary">수정</button>
+                                            <button class="btn btn-secondary">삭제</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="address-empty" id="addressEmpty" style="display: none;">
+                                    <div class="empty-state">
+                                        <i class="bi bi-geo-alt"
+                                            style="font-size: 64px; color: #ddd; margin-bottom: 20px;"></i>
+                                        <h3>등록된 배송지가 없습니다</h3>
+                                        <p style="color: #777; margin: 10px 0 30px;">배송지를 등록하면 주문 시 더 빠르게 결제할 수 있습니다.
+                                        </p>
+                                        <button class="btn btn-primary" id="addAddressEmptyBtn">배송지 추가</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>고객센터</h3>
+                    <p><strong>1588-0000</strong></p>
+                    <p>평일 09:00 - 18:00</p>
+                    <p>주말/공휴일 휴무</p>
+                </div>
+                <div class="footer-section">
+                    <h3>배송안내</h3>
+                    <p>전국 무료배송</p>
+                    <p>5만원 이상 구매 시</p>
+                    <p>당일발송 가능</p>
+                </div>
+                <div class="footer-section">
+                    <h3>반품/교환</h3>
+                    <p>7일 이내 무료반품</p>
+                    <p>상품 미개봉 시</p>
+                    <p>배송비 무료</p>
+                </div>
+                <div class="footer-section">
+                    <h3>회사정보</h3>
+                    <p>상호: 동서가구</p>
+                    <p>사업자번호: 2020-성남분당A-1864호</p>
+                    <p>대표: 박현해</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 dongsuhfurniture.co.kr All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">사업자정보확인</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/header.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/mypage.js"></script>
+</body>
+
+</html>

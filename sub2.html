@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>베스트 상품 - 동서가구</title>
+    <link rel="icon" type="image/png" href="source/favicon.png">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img src="source/logo.svg" alt="동서가구 로고" class="brand-logo">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="sub1.html">상품목록</a></li>
+                    <li><a href="sub2.html" class="active">베스트</a></li>
+                    <li><a href="sub3.html">장바구니</a></li>
+                    <li><a href="sub4.html">마이페이지</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="nav-icon search-toggle" id="searchToggle" type="button" aria-label="검색 열기/닫기">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <a href="sub3.html" class="nav-icon">
+                        <i class="bi bi-cart3"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="sub4.html" class="nav-icon">
+                        <i class="bi bi-person"></i>
+                    </a>
+                </div>
+                <button class="nav-toggle" aria-label="메뉴 토글">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 헤더 아래 독립 검색 패널 -->
+    <div class="search-panel" id="searchPanel" aria-hidden="true">
+        <div class="search-panel-inner">
+            <label for="searchInput" class="sr-only">상품 검색</label>
+            <div class="search-input-wrap">
+                <input type="text" id="searchInput" class="search-input" placeholder="상품 검색..." autocomplete="off"
+                    aria-expanded="false">
+                <button class="search-btn" type="button" aria-label="검색 실행"><i class="bi bi-search"></i></button>
+                <button class="search-close" type="button" aria-label="검색 닫기"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+    </div>
+
+    <main class="main">
+        <!-- 베스트 상품 헤더 -->
+        <section class="page-header page-header--best">
+            <div class="container">
+                <h1 class="page-title">베스트 상품</h1>
+                <p class="page-description">지금 가장 많이 구매되고 인기 있는 상품들을 만나보세요</p>
+            </div>
+        </section>
+
+        <!-- 베스트 상품 목록 -->
+        <section class="page-content">
+            <div class="container">
+                <!-- 정렬 옵션 -->
+                <div class="products-toolbar">
+                    <div class="toolbar-left">
+                        <span class="products-count">총 <strong id="bestProductsCount">0</strong>개 상품</span>
+                    </div>
+                    <div class="toolbar-right">
+                        <select class="sort-select" id="sortSelect">
+                            <option value="popular">인기순</option>
+                            <option value="rating">평점순</option>
+                            <option value="price-low">가격 낮은순</option>
+                            <option value="price-high">가격 높은순</option>
+                            <option value="reviews">리뷰 많은순</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- TOP 3 베스트 상품 (특별 강조) -->
+                <div class="best-top3-section">
+                    <h2 class="section-subtitle">
+                        <i class="bi bi-trophy-fill"></i>
+                        TOP 3 베스트 상품
+                    </h2>
+                    <div class="best-top3-grid" id="bestTop3Grid">
+                        <!-- JavaScript로 동적으로 채워집니다 -->
+                    </div>
+                </div>
+
+                <!-- 나머지 베스트 상품 -->
+                <div class="best-others-section">
+                    <h2 class="section-subtitle">
+                        <i class="bi bi-star-fill"></i>
+                        베스트 상품 전체보기
+                    </h2>
+                    <div class="best-products-grid" id="bestProductsGrid">
+                        <!-- JavaScript로 동적으로 채워집니다 -->
+                    </div>
+                </div>
+
+                <!-- 페이지네이션 (필요시) -->
+                <!-- <div class="pagination">
+                    <button class="page-btn"><i class="bi bi-chevron-left"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn"><i class="bi bi-chevron-right"></i></button>
+                </div> -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>고객센터</h3>
+                    <p><strong>1588-0000</strong></p>
+                    <p>평일 09:00 - 18:00</p>
+                    <p>주말/공휴일 휴무</p>
+                </div>
+                <div class="footer-section">
+                    <h3>배송안내</h3>
+                    <p>전국 무료배송</p>
+                    <p>5만원 이상 구매 시</p>
+                    <p>당일발송 가능</p>
+                </div>
+                <div class="footer-section">
+                    <h3>반품/교환</h3>
+                    <p>7일 이내 무료반품</p>
+                    <p>상품 미개봉 시</p>
+                    <p>배송비 무료</p>
+                </div>
+                <div class="footer-section">
+                    <h3>회사정보</h3>
+                    <p>상호: 동서가구</p>
+                    <p>사업자번호: 2020-성남분당A-1864호</p>
+                    <p>대표: 박현해</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 dongsuhfurniture.co.kr All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">사업자정보확인</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    >
+
+    <script src="js/header.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/best-products.js"></script>
+</body>
+
+</html>

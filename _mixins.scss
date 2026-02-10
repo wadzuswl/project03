@@ -1,0 +1,124 @@
+@use 'sass:color';
+@use 'variables' as *;
+/* ############ Mixin Group ############ */
+
+// 모든 박스 공통 섀도우 + 호버 강화
+@mixin layout-boxshadow {
+  background-color: $c-bg-primary;
+  border-radius: $r-md;
+  box-shadow: 0 4px 16px rgba($c-black, 0.12);
+  transition: 0.3s;
+  
+  &:hover {
+    box-shadow: 0 8px 24px rgba($c-black, 0.16);
+  }
+}
+
+// 페이지 기본 컨테이너(최대 폭 + 좌우 패딩)
+@mixin container {
+  width: 1160px;
+  margin: auto;
+  padding: 0 20px;
+  
+  @media (max-width: $bp-tablet) {
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  @media (max-width: $bp-mobile) {
+    padding: 0 15px;
+  }
+}
+
+// 가로/세로 중앙 정렬
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// 양끝 정렬 + 세로 중앙 정렬
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// 말줄임 처리(1줄 또는 다중 라인)
+@mixin text-ellipsis($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// 타이포그래피 기본 스타일(크기/두께/행간/자간)
+@mixin text-style($size, $weight, $line-height: $lh-base, $letter-spacing: null) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+  @if $letter-spacing != null {
+    letter-spacing: $letter-spacing;
+  }
+}
+
+// 제목용 타이포(기본은 굵게 + 타이트 행간)
+@mixin heading-style($size, $weight: $fw-bold, $line-height: $lh-tight) {
+  @include text-style($size, $weight, $line-height);
+}
+
+// 카드/박스 호버 상승 효과
+@mixin card-hover-effect {
+  transition: 0.3s;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba($c-black, 0.2);
+  }
+}
+
+// 반응형 그리드(모바일/태블릿/데스크톱 컬럼 수)
+@mixin responsive-grid($mobile: 1, $tablet: 2, $desktop: 3) {
+  display: grid;
+  grid-template-columns: repeat($desktop, 1fr);
+  gap: 30px;
+  
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: repeat($tablet, 1fr);
+    gap: 20px;
+  }
+  
+  @media (max-width: $bp-mobile) {
+    grid-template-columns: repeat($mobile, 1fr);
+    gap: 10px;
+  }
+}
+
+// 버튼 스타일 프리셋(배경/텍스트 + 호버 효과)
+@mixin button-variant($bg-color, $text-color: $c-white) {
+  background-color: $bg-color;
+  color: $text-color;
+  padding: 12px 30px;
+  border-radius: $r-full;
+  font-weight: $fw-medium;
+  transition: 0.3s;
+  
+  &:hover {
+    background-color: color.adjust($bg-color, $lightness: -12%);
+    transform: translateY(-4px) scale(1.01);
+    box-shadow:
+      0 10px 24px rgba($bg-color, 0.35),
+      0 0 0 3px rgba($bg-color, 0.18);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}

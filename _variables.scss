@@ -1,0 +1,115 @@
+/* ============================================
+   Design System Variables
+   ============================================ */
+
+/* ============================================
+   Typography
+   ============================================ */
+$ff-primary-kr: 'NEXON Lv1 Gothic', sans-serif; // 본문/기본 UI 폰트
+$ff-secondary-kr: 'GmarketSansMedium', sans-serif; // 포인트/배지/강조 폰트
+$ff-accent: 'Cafe24Ssurround', sans-serif; // 포인트(배지/리본)
+
+$fw-regular: 400; // 기본 본문
+$fw-medium: 600; // 강조 본문/버튼/소제목
+$fw-bold: 800; // 제목/배지/메인 타이틀
+
+
+$fs-2xs: 10px; // 미니 라벨/칩/보조 정보
+$fs-xs: 12px; // 캡션/보조 정보/라벨
+$fs-13: 13px; // 보조 텍스트
+$fs-sm: 14px; // 작은 본문/보조 텍스트
+$fs-15: 15px; // 본문 중간
+$fs-md: 16px; // 기본 본문
+$fs-17: 17px; // 강조 본문
+$fs-lg: 18px; // 강조 본문/카드 제목
+$fs-xl: 20px; // 강조 본문/소제목
+$fs-2xl: 24px; // 섹션 제목
+$fs-3xl: 32px; // 큰 섹션 제목
+$fs-4xl: 48px; // 메인 타이틀
+$fs-5xl: 56px; // 히어로 타이틀
+$fs-6xl: 64px; // 비주얼 헤드라인
+
+$lh-base: 1.6; // 본문 기본 행간
+$lh-tight: 1.4; // 제목용 촘촘한 행간
+
+/* ============================================
+   Color Palette - Semantic Naming
+   ============================================ */
+
+/* Brand Colors */
+$c-brand-main: #150f6e; // 주요 버튼/포인트 배경
+$c-brand-sub: #1389ff; // 보조 포인트/보조 강조
+
+/* Gradients */
+$g-brand-primary: linear-gradient(135deg, #150f6e 0%, #1389ff 100%); // 브랜드 기본
+$g-brand-warm: linear-gradient(135deg, #ff8521 0%, #ffb428 100%); // 브랜드+웜 포인트
+$g-accent-pink: linear-gradient(135deg, #ff588a 0%, #FFD1DC 100%); // 포인트 배지/리본
+$g-accent-green: linear-gradient(135deg, #2add2a 0%, #5eddaa 100%); // 성공/긍정 강조
+$g-overlay-dark: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%); // 이미지 오버레이
+
+/* Status Colors */
+$c-success: #0a7536; // 성공/완료 상태
+$c-warning: #FFD912; // 경고/주의 상태
+$c-error: #ED2040; // 오류/위험 상태
+
+/* Base Colors */
+$c-white: #fff; // 기본 배경
+$c-black: #171717; // 텍스트 대비용
+
+/* ============================================
+   Text Colors - Semantic Mapping
+   ============================================ */
+$c-text-primary1: #333; // 기본 본문
+$c-text-primary2: #111; // 강조 본문
+$c-text-secondary: #555; // 보조 설명
+$c-text-muted: #999; // 캡션/메타 정보
+
+/* ============================================
+   Background Colors
+   ============================================ */
+$c-bg-primary: $c-white; // 기본 페이지 배경
+$c-bg-secondary: #F9F9F9; // 섹션/카드 배경
+
+/* ============================================
+   Border Colors
+   ============================================ */
+$c-border-primary: #eee; // 기본 구분선/테두리
+
+/* ============================================
+   Responsive Breakpoints
+   ============================================ */
+$bp-mobile: 400px; // 모바일 최대
+$bp-tablet: 767px; // 태블릿 최대
+$bp-desktop: 1024px; // 데스크톱 기본
+$bp-desktop-lg: 1440px; // 와이드 데스크톱
+
+/* ============================================
+   Border Radius
+   ============================================ */
+$r-xs: 3px; // 작은뱃지
+$r-sm: 5px; // 작은카드
+$r-md: 10px; // 기본 카드/버튼
+$r-main: 18px; // 중간-큰 카드
+$r-lg: 20px; // 큰 카드/섹션 박스
+$r-xl: 24px; // 배너
+$r-2xl: 30px; // 큰 컨테이너
+$r-full: 50%; // 원
+
+/* Spacing (common / responsive / style 호환) */
+$spacing-xs: 5px;
+$spacing-sm: 10px;
+$spacing-md: 20px;
+$spacing-lg: 30px;
+$spacing-xl: 50px;
+$spacing-2xl: 60px;
+
+/* Transition & Shadow */
+$transition-base: 0.3s ease;
+$shadow-sm: 0 2px 8px rgba($c-black, 0.08);
+$shadow-md: 0 4px 16px rgba($c-black, 0.12);
+$shadow-lg: 0 8px 24px rgba($c-black, 0.15);
+$shadow-xl: 0 12px 32px rgba($c-black, 0.2);
+
+/* 폰트 크기 보조 (responsive / best-products 등) */
+$fs-22: 22px;
+$fs-28: 28px;

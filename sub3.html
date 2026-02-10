@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니 - 동서가구</title>
+    <link rel="icon" type="image/png" href="source/favicon.png">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img src="source/logo.svg" alt="동서가수 로고" class="brand-logo">
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="sub1.html">상품목록</a></li>
+                    <li><a href="sub2.html">베스트</a></li>
+                    <li><a href="sub3.html" class="active">장바구니</a></li>
+                    <li><a href="sub4.html">마이페이지</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="nav-icon search-toggle" id="searchToggle" type="button" aria-label="검색 열기/닫기">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <a href="sub3.html" class="nav-icon">
+                        <i class="bi bi-cart3"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="sub4.html" class="nav-icon">
+                        <i class="bi bi-person"></i>
+                    </a>
+                </div>
+                <button class="nav-toggle" aria-label="메뉴 토글">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 헤더 아래 독립 검색 패널 -->
+    <div class="search-panel" id="searchPanel" aria-hidden="true">
+        <div class="search-panel-inner">
+            <label for="searchInput" class="sr-only">상품 검색</label>
+            <div class="search-input-wrap">
+                <input type="text" id="searchInput" class="search-input" placeholder="상품 검색..." autocomplete="off"
+                    aria-expanded="false">
+                <button class="search-btn" type="button" aria-label="검색 실행"><i class="bi bi-search"></i></button>
+                <button class="search-close" type="button" aria-label="검색 닫기"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+    </div>
+
+    <main class="main">
+        <section class="page-header page-header--cart">
+            <div class="container">
+                <h1 class="page-title">장바구니</h1>
+                <p class="page-description">선택한 상품을 확인하고 주문하세요</p>
+            </div>
+        </section>
+
+        <section class="cart-section">
+            <div class="container">
+                <div class="cart-wrapper">
+                    <div class="cart-items">
+                        <div class="cart-header">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" id="selectAll" checked>
+                                <span>전체선택</span>
+                            </label>
+                            <button class="delete-selected">선택삭제</button>
+                        </div>
+                        <div class="cart-item">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" class="item-checkbox" checked>
+                                <span></span>
+                            </label>
+                            <div class="cart-item-image">
+                                <img src="https://picsum.photos/120/120?random=1" alt="프리미엄 무선 이어폰">
+                            </div>
+                            <div class="cart-item-info">
+                                <h3 class="cart-item-title">프리미엄 무선 이어폰</h3>
+                                <div class="cart-item-option">
+                                    <span>색상: 블랙</span>
+                                </div>
+                                <div class="cart-item-price">
+                                    <span class="price-original">129,000원</span>
+                                    <span class="price-sale">89,000원</span>
+                                </div>
+                            </div>
+                            <div class="cart-item-quantity">
+                                <button class="qty-btn minus"><i class="bi bi-dash"></i></button>
+                                <input type="number" value="1" min="1" class="qty-input">
+                                <button class="qty-btn plus"><i class="bi bi-plus"></i></button>
+                            </div>
+                            <div class="cart-item-total">
+                                <span class="total-price">89,000원</span>
+                            </div>
+                            <button class="cart-item-delete"><i class="bi bi-x-lg"></i></button>
+                        </div>
+                        <div class="cart-item">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" class="item-checkbox" checked>
+                                <span></span>
+                            </label>
+                            <div class="cart-item-image">
+                                <img src="https://picsum.photos/120/120?random=2" alt="스마트 워치 프로">
+                            </div>
+                            <div class="cart-item-info">
+                                <h3 class="cart-item-title">스마트 워치 프로</h3>
+                                <div class="cart-item-option">
+                                    <span>색상: 실버</span>
+                                </div>
+                                <div class="cart-item-price">
+                                    <span class="price-sale">299,000원</span>
+                                </div>
+                            </div>
+                            <div class="cart-item-quantity">
+                                <button class="qty-btn minus"><i class="bi bi-dash"></i></button>
+                                <input type="number" value="1" min="1" class="qty-input">
+                                <button class="qty-btn plus"><i class="bi bi-plus"></i></button>
+                            </div>
+                            <div class="cart-item-total">
+                                <span class="total-price">299,000원</span>
+                            </div>
+                            <button class="cart-item-delete"><i class="bi bi-x-lg"></i></button>
+                        </div>
+                    </div>
+                    <div class="cart-summary">
+                        <div class="summary-box">
+                            <h3>주문 요약</h3>
+                            <div class="summary-row">
+                                <span>상품금액</span>
+                                <span>388,000원</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>배송비</span>
+                                <span class="free">무료</span>
+                            </div>
+                            <div class="summary-row discount">
+                                <span>할인금액</span>
+                                <span class="discount-amount">-40,000원</span>
+                            </div>
+                            <div class="summary-divider"></div>
+                            <div class="summary-row total">
+                                <span>총 결제금액</span>
+                                <span class="final-price">348,000원</span>
+                            </div>
+                            <div class="summary-info">
+                                <p><i class="bi bi-info-circle"></i> 5만원 이상 구매 시 무료배송</p>
+                            </div>
+                            <button class="checkout-btn">주문하기</button>
+                            <button class="continue-shopping-btn">쇼핑 계속하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>고객센터</h3>
+                    <p><strong>1588-0000</strong></p>
+                    <p>평일 09:00 - 18:00</p>
+                    <p>주말/공휴일 휴무</p>
+                </div>
+                <div class="footer-section">
+                    <h3>배송안내</h3>
+                    <p>전국 무료배송</p>
+                    <p>5만원 이상 구매 시</p>
+                    <p>당일발송 가능</p>
+                </div>
+                <div class="footer-section">
+                    <h3>반품/교환</h3>
+                    <p>7일 이내 무료반품</p>
+                    <p>상품 미개봉 시</p>
+                    <p>배송비 무료</p>
+                </div>
+                <div class="footer-section">
+                    <h3>회사정보</h3>
+                    <p>상호: 동서가구</p>
+                    <p>사업자번호: 2020-성남분당A-1864호</p>
+                    <p>대표: 박현해</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 dongsuhfurniture.co.kr All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">사업자정보확인</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/header.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/cart-page.js"></script>
+</body>
+
+</html>

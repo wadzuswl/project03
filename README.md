@@ -1,4 +1,4 @@
-# 🛋️ Project03 | 동서가구 리뉴얼 – 프리미엄 가구 쇼핑몰 프로젝트
+# 🪑 Project03 | 동서가구 리뉴얼 – 가구 쇼핑몰 프로젝트 Project03 | 동서가구 리뉴얼 – 가구 쇼핑몰 프로젝트
 
 ## 프로젝트 개요
 
@@ -29,6 +29,32 @@
   <img src="https://img.shields.io/badge/LocalStorage-333333?style=flat-square"/>
 </p>
 
+---
+
+## 🖥️ 프로젝트 미리보기
+
+<table>
+  <thead>
+    <tr>
+      <th>Desktop</th>
+      <th>Tablet</th>
+      <th>Mobile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top">
+        <img src="https://github.com/user-attachments/assets/acc2b603-41e8-4166-8fb7-225334c6349c" alt="Desktop Preview" width="250" />
+      </td>
+      <td valign="top">
+        <img src="https://github.com/user-attachments/assets/20730478-8ce4-4013-9ac9-2716652cb845" alt="Tablet Preview" width="180" />
+      </td>
+      <td valign="top">
+        <img src="https://github.com/user-attachments/assets/094f6750-65f2-4658-904b-4d760d6297f9" alt="Mobile Preview" width="120" />
+      </td>
+    </tr>
+  </tbody>
+</table>
 ---
 
 ## 🗂 카테고리 구성 (5개)

@@ -798,13 +798,11 @@ const productsData = {
             discount: 33,
             rating: 4.6,
             reviews: 9,
-            image: 'https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/32765/image/detail/32765_detail_05.jpg',
+            image: 'https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/6410/image/detail/6410_detail_096.jpg',
             images: [
-                'https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/32765/image/detail/32765_detail_05.jpg',
-                'https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/32765/image/detail/32765_detail_146.jpg',
-                'https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/32765/image/detail/32765_detail_276.jpg',
-                'https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/32765/image/detail/32765_detail_313.jpg',
-                'https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/32765/image/detail/32765_detail_46.jpg'
+                'https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/6410/image/detail/6410_detail_096.jpg',
+                'https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/6410/image/detail/6410_detail_194.jpg',
+                'https://godomall.speedycdn.net/03dfe2ed0e288d77b31042956826a098/goods/6410/image/detail/6410_detail_230.jpg',
             ],
             badge: 'new',
             badgeText: 'NEW',
